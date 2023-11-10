@@ -43,9 +43,9 @@ class PythonValidationVisitor(ast.NodeVisitor):
             self.num_model_def += 1
             if node.args.args and not node.args.args[0].arg == "dbt":
                 self.dbt_errors.append("'dbt' not provided for model as the first argument")
-            if len(node.args.args) != 2:
+            if len(node.args.args) != 1:
                 self.dbt_errors.append(
-                    "model function should have two args, `dbt` and a session to current warehouse"
+                    "model function should have one args, `dbt`"
                 )
             # check we have a return and only one
             if not isinstance(node.body[-1], ast.Return) or isinstance(
